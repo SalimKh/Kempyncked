@@ -26,3 +26,9 @@ body {
     background-color: #ff36a3;
   }
 }
+
+#main {
+  margin: auto;
+  width: 50%;
+  vertical-align: middle;
+}
