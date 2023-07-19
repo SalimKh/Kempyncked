@@ -5,10 +5,10 @@ var get = document.querySelector.bind(document),
 
 function init() {
   k = get("#k");
-  context = k.getContext("2d");
 
   k.onclick = function (event) {
     if (eventCompteur == 0) {
+      console.log("Allez Marcel");
       var audio = new Audio("marcel.mp3");
       audio.play();
     }
