@@ -1,5 +1,8 @@
 window.addEventListener("load", () => {
   const kempynck = document.getElementById("kempynck");
+  const secret = document.getElementById("secret");
+  const secretCube = document.getElementById("secret-cube");
+
   var eventCompteur = 0,
     isAnimationOn = false;
   const audio = document.getElementById("audio");
@@ -42,6 +45,14 @@ window.addEventListener("load", () => {
         spawnCamtar();
       }
     }
+  });
+
+  secretCube.addEventListener("click", () => {
+    secret.classList.remove("hide");
+  });
+
+  secret.addEventListener("click", () => {
+    secret.classList.add("hide");
   });
 
   audio.addEventListener("ended", (event) => {
