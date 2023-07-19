@@ -4,11 +4,12 @@ var get = document.querySelector.bind(document),
   k;
 
 function init() {
-  k = get("#k");
+  k = get(".k");
 
   k.onclick = function (event) {
     if (eventCompteur == 0) {
-      console.log("Allez Marcel");
+      eventCompteur++;
+      console.log(eventCompteur);
       var audio = new Audio("marcel.mp3");
       audio.play();
     }
