@@ -6,10 +6,41 @@ window.addEventListener("load", () => {
   var eventCompteur = 0,
     isAnimationOn = false;
   const audio = document.getElementById("audio");
+  const contentDiv = document.getElementsByClassName("content")[0];
 
   //FUNCTION
+  function clickCamtar(event) {
+    if (!isAnimationOn) {
+      camtar = event.target;
+      isAnimationOn = true;
+      camtar.animate(
+        [
+          // keyframes
+          { transform: "translateX(-60vh)" },
+        ],
+        {
+          duration: 1000,
+          iterations: 1,
+        }
+      );
+      setTimeout(() => {
+        camtar.remove();
+        kempynck.setAttribute("src", "camtarK.png");
+        isAnimationOn = false;
+      }, 1000);
+    }
+  }
+
   function spawnCamtar() {
-    console.log("camtar");
+    const camtar = document.createElement("img");
+    camtar.setAttribute("src", "camtar.png");
+    camtar.setAttribute("draggable", "false");
+    camtar.setAttribute(
+      "style",
+      "transform: scale(0.5, 0.5);position:absolute;top:0px;right:0px;z-index: 1;"
+    );
+    contentDiv.appendChild(camtar);
+    camtar.addEventListener("click", clickCamtar);
   }
 
   //Event Click
@@ -41,9 +72,6 @@ window.addEventListener("load", () => {
         }
       );
       eventCompteur++;
-      if (eventCompteur == 1) {
-        spawnCamtar();
-      }
     }
   });
 
@@ -57,5 +85,8 @@ window.addEventListener("load", () => {
 
   audio.addEventListener("ended", (event) => {
     isAnimationOn = false;
+    if (eventCompteur == 1) {
+      spawnCamtar();
+    }
   });
 });
