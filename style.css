@@ -42,7 +42,15 @@ body {
   z-index: 5;
 }
 
-.kempynck:hover {
+.kempynckMobile {
+  max-height: 90%;
+  max-width: 90vw;
+  user-select: none;
+  transition: all 300ms ease-in-out;
+  z-index: 5;
+}
+
+.kempynck:hover .kempynckMobile:hover {
   transform: scale(1.1);
 }
 

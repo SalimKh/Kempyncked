@@ -4,24 +4,27 @@ window.addEventListener("load", () => {
   const secretCube = document.getElementById("secret-cube");
 
   var eventCompteur = 0,
-    isAnimationOn = false;
+    isAnimationOn = false,
+    hasTouchScreen = false;
   const audio = document.getElementById("audio");
   const contentDiv = document.getElementsByClassName("content")[0];
+
+  if ("maxTouchPoints" in navigator) {
+    hasTouchScreen = navigator.maxTouchPoints > 0;
+  }
+
+  if (hasTouchScreen) {
+    kempynck.setAttribute("class", "kempynckMobile");
+  }
 
   //FUNCTION
   function clickCamtar(event) {
     if (!isAnimationOn) {
       camtar = event.target;
       isAnimationOn = true;
-      camtar.animate(
-        [
-          // keyframes
-          { transform: "translateX(-60vh)" },
-        ],
-        {
-          duration: 1000,
-          iterations: 1,
-        }
+      camtar.setAttribute(
+        "style",
+        "transform: scale(0.5, 0.5);position:absolute;top:50vh;right:50vh;z-index: 1;transform-origin:top right; transition: all 1000ms ease-in-out;"
       );
       setTimeout(() => {
         camtar.remove();
@@ -37,7 +40,7 @@ window.addEventListener("load", () => {
     camtar.setAttribute("draggable", "false");
     camtar.setAttribute(
       "style",
-      "transform: scale(0.5, 0.5);position:absolute;top:0px;right:0px;z-index: 1;"
+      "transform: scale(0.5, 0.5);position:absolute;top:0px;right:0px;z-index: 1;transform-origin:top right;"
     );
     contentDiv.appendChild(camtar);
     camtar.addEventListener("click", clickCamtar);
