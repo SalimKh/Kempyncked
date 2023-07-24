@@ -40,7 +40,9 @@ form.addEventListener("submit", (event) => {
     .then(() => {
       document.location.href = "home.html";
     })
-    .catch((error) => {});
+    .catch((error) => {
+      document.querySelector(".wrongInfo").removeAttribute("hidden");
+    });
 });
 
 document.querySelector(".psw").addEventListener("click", (event) => {

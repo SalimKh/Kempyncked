@@ -183,3 +183,9 @@ form .button input:hover {
     flex-direction: column;
   }
 }
+
+.wrongInfo {
+  color: #bb1515;
+  margin-top: 10px;
+  font-size: 2em;
+}
