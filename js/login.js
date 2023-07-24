@@ -28,7 +28,7 @@ const form = document.querySelector("form");
 //Check if user is already loged
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    document.location.href = "futur.html";
+    document.location.href = "home.html";
   }
 });
 

@@ -40,7 +40,7 @@ const form = document.querySelector("form");
 //Check if user is already loged
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    //document.location.href = "home.html";
+    document.location.href = "home.html";
   }
 });
 
@@ -71,7 +71,7 @@ function createAccount(email, password) {
         displayName: displayName,
       })
         .then(() => {
-          //document.location.href = "home.html";
+          document.location.href = "home.html";
         })
         .catch((error) => {});
       registerUsername(displayName, userCredential.user.uid);
