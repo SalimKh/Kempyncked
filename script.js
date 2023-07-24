@@ -28,7 +28,7 @@ window.addEventListener("load", () => {
       );
       setTimeout(() => {
         camtar.remove();
-        kempynck.setAttribute("src", "camtarK.png");
+        kempynck.setAttribute("src", "ressources/camtarK.png");
         isAnimationOn = false;
       }, 1000);
     }
@@ -36,7 +36,7 @@ window.addEventListener("load", () => {
 
   function spawnCamtar() {
     const camtar = document.createElement("img");
-    camtar.setAttribute("src", "camtar.png");
+    camtar.setAttribute("src", "ressources/camtar.png");
     camtar.setAttribute("draggable", "false");
     camtar.setAttribute(
       "style",
