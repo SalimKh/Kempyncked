@@ -28,11 +28,11 @@ onAuthStateChanged(auth, (user) => {
   if (user) {
     let loginTabs = document.querySelectorAll(".authTab");
     loginTabs.forEach((element) => {
-      element.setAttribute("hidden", "true");
+      element.setAttribute("hidden", "");
     });
-    let navbar = document.querySelector("ul");
+    document.querySelector("body").setAttribute("class", "bgAlien2");
   } else {
-    document.querySelector("#logOut").setAttribute("hidden", "true");
+    document.querySelector("#logOut").setAttribute("hidden", "");
   }
 });
 

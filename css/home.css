@@ -1,0 +1,11 @@
+body {
+  background-size: 100% 100vh;
+}
+
+.bgAlien {
+  background-image: url(../ressources/alien.jpg);
+}
+
+.bgAlien2 {
+  background-image: url(../ressources/alien.webp);
+}
