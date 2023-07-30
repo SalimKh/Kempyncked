@@ -26,13 +26,16 @@ const auth = getAuth();
 //Check if user is already loged
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    let loginTabs = document.querySelectorAll(".authTab");
-    loginTabs.forEach((element) => {
-      element.setAttribute("hidden", "");
-    });
     document.querySelector("body").setAttribute("class", "bgAlien2");
+    let tabToShows = document.querySelectorAll(".needAuth");
+    tabToShows.forEach((element) => {
+      element.removeAttribute("hidden");
+    });
   } else {
-    document.querySelector("#logOut").setAttribute("hidden", "");
+    let tabToShows = document.querySelectorAll(".authTab");
+    tabToShows.forEach((element) => {
+      element.removeAttribute("hidden");
+    });
   }
 });
 
