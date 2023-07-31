@@ -37,22 +37,40 @@ const db = getFirestore(app);
 //Get form
 const form = document.querySelector("form");
 
-//Check if user is already loged
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    document.location.href = "home.html";
-  }
-});
+var isCreation = false;
 
 async function registerUsername(displayName, id) {
   try {
+    console.log("test 1");
     await setDoc(doc(db, "accounts", id), {
       displayName: displayName,
     });
+    console.log("test 2");
   } catch (e) {
     console.error("Error adding document: ", e);
   }
 }
+
+//Check if user is already loged
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    if (isCreation) {
+      let displayName = document.querySelector("#username").value;
+      updateProfile(auth.currentUser, {
+        displayName: displayName,
+      })
+        .then(() => {
+          console.log("test 3");
+          registerUsername(displayName, user.uid).then(() => {
+            document.location.href = "home.html";
+          });
+        })
+        .catch((error) => {});
+    } else {
+      document.location.href = "home.html";
+    }
+  }
+});
 
 async function checkUsername(username) {
   let queryDisplayName = query(
@@ -64,20 +82,8 @@ async function checkUsername(username) {
 }
 
 function createAccount(email, password) {
-  let displayName = document.querySelector("#username").value;
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      updateProfile(auth.currentUser, {
-        displayName: displayName,
-      })
-        .then(() => {
-          registerUsername(displayName, userCredential.user.uid).then(() => {
-            document.location.href = "home.html";
-          });
-        })
-        .catch((error) => {});
-    })
-    .catch((error) => {});
+  isCreation = true;
+  createUserWithEmailAndPassword(auth, email, password);
 }
 
 form.addEventListener("submit", (event) => {
@@ -99,6 +105,8 @@ form.addEventListener("submit", (event) => {
     passwordField.setCustomValidity(
       "Le mot de passe doit être supérieur à 6 caractères"
     );
+    console.log(password);
+    console.log(password.length);
   }
 
   if (passwordField.reportValidity()) {
