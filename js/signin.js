@@ -71,10 +71,11 @@ function createAccount(email, password) {
         displayName: displayName,
       })
         .then(() => {
-          document.location.href = "home.html";
+          registerUsername(displayName, userCredential.user.uid).then(() => {
+            document.location.href = "home.html";
+          });
         })
         .catch((error) => {});
-      registerUsername(displayName, userCredential.user.uid);
     })
     .catch((error) => {});
 }
