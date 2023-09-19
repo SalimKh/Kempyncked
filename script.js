@@ -91,5 +91,8 @@ window.addEventListener("load", () => {
     if (eventCompteur == 1) {
       spawnCamtar();
     }
+    if (eventCompteur == 2) {
+      document.location.href = "home.html";
+    }
   });
 });
