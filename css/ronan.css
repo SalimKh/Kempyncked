@@ -40,7 +40,7 @@ button {
   grid-template-rows: 1fr 1fr;
 }
 
-@media only screen and (min-width: 800px) {
+@media screen and (min-width: 800px) {
   .app__container {
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
@@ -148,12 +148,24 @@ nav.nav {
   position: absolute;
   text-align: center;
   padding: 12px;
-  top: 25%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
   color: var(--color-white);
   font-size: 3em;
   background-color: rgba(0, 0, 0, 0.75);
   border-radius: 10px;
   text-transform: capitalize;
+}
+
+@media screen and (min-width: 800px) {
+  .game__question {
+    top: 25%;
+    transform: translateX(-50%);
+  }
+}
+
+.justification {
+  color: var(--color-white);
+  font-size: 1.5em;
 }
