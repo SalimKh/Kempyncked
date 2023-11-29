@@ -5,6 +5,7 @@ const replayButtonHTML = document.getElementById("replay");
 const overlayHTML = document.getElementById("overlay");
 const countdownHTML = document.getElementById("countdown");
 const looseHTML = document.getElementById("loose");
+const bestScoreHTML = document.getElementById("best-score");
 
 const rightHTML = document.getElementById("right");
 const leftHTML = document.getElementById("left");
@@ -302,10 +303,24 @@ function displayScore() {
 
 function handleLoose() {
   isGamePlaying = false;
+  handleBestScore();
+
   overlayHTML.classList.remove("hide");
+  bestScoreHTML.innerHTML = localStorage.getItem("BEST_SCORE");
   justificationHTML.innerHTML = `"${choices[choiceIndex].justification}"`;
   looseHTML.classList.remove("hide");
   questionHTML.classList.add("hide");
+}
+
+function handleBestScore() {
+  const bestScore = localStorage.getItem("BEST_SCORE");
+  if (bestScore !== null) {
+    if (score > parseInt(bestScore)) {
+      localStorage.setItem("BEST_SCORE", score);
+    }
+  } else {
+    localStorage.setItem("BEST_SCORE", score);
+  }
 }
 
 function handleReset() {
