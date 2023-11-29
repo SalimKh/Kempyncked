@@ -183,7 +183,7 @@ const choices = [
   },
   {
     question: "JDG",
-    reponse: 2,
+    response: 2,
     score: 1,
   },
   {
