@@ -78,6 +78,8 @@ onAuthStateChanged(auth, (user) => {
         return; // Redirected, no need to continue
     }
 
-    document.body.className = isAuthenticated ? "bgAuth" : "bgNotAuth";
+    if (isAuthenticated && currentPath === "home.html") {
+        document.getElementsByClassName('join-us-text')[0].innerHTML = "Bienvenue";
+    }
     generateNavbar(isAuthenticated);
 });

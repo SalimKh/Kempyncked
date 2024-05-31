@@ -13,4 +13,10 @@ function createFlyingInstance() {
 }
 
 // Create flying instances at regular intervalss
-setInterval(createFlyingInstance, 1000);
+setTimeout(() => {
+  setInterval(createFlyingInstance, 1000);
+}, 3000);
+
+
+
+
