@@ -1,11 +1,71 @@
 body {
   background-size: 100% 100vh;
+  overflow: hidden;
+  background-color: #474747;
+  background-image: url("../ressources/kempynck2.png");
+  background-size: 200px; /* Adjust size of the image */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Ensure single instance of the image */
+  height: 100vh; /* Set the height of the background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 }
 
-.bgAlien {
-  background-image: url(../ressources/alien.jpg);
+/* Add whirlwind effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 100px); /* Adjust top position to center vertically */
+  left: calc(50% - 100px); /* Adjust left position to center horizontally */
+  width: 200px; /* Adjust size of the whirlwind */
+  height: 200px; /* Adjust size of the whirlwind */
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Adjust shadow color and intensity */
+  animation: whirlwind 2s linear infinite; /* Adjust animation duration and timing */
 }
 
-.bgAlien2 {
-  background-image: url(../ressources/alien.webp);
+/* Define keyframes for whirlwind animation */
+@keyframes whirlwind {
+  0% {
+    transform: rotate(0deg) scale(1);
+    opacity: 1;
+    filter: blur(0px);
+  }
+  50% {
+    transform: rotate(1800deg) scale(3);
+    opacity: 0.5;
+    filter: blur(2px);
+  }
+  100% {
+    transform: rotate(3600deg) scale(5);
+    opacity: 0;
+    filter: blur(5px);
+  }
 }
+ 
+
+/* Apply glow effect to the image */
+body::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - 100px); /* Match top position with whirlwind */
+  left: calc(50% - 100px); /* Match left position with whirlwind */
+  width: 200px; /* Adjust size of the glow */
+  height: 200px; /* Adjust size of the glow */
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 80%); /* Adjust glow color and intensity */
+  animation: whirlwind 2s linear infinite; /* Match animation with whirlwind */
+}
+
+/* Navbar styling */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
