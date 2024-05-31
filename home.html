@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
     <title>Accueil</title>
-    <link rel="icon" type="image/x-icon" href="ressources/kempynck2.png" />
-    <script type="module" src="js/home.js"></script>
-    <link href="css/navbar.css" rel="stylesheet" type="text/css" />
-    <link href="css/home.css" rel="stylesheet" type="text/css" />
-  </head>
-
-  <body class="bgAlien">
-    <ul>
-      <li><a href="index.html">K</a></li>
-      <li><a class="active">Accueil</a></li>
-      <li hidden class="needAuth">
-        <a href="\pages\spaceRonan.html">Space Ronan</a>
-      </li>
-      <li hidden class="needAuth">
-        <a href="\pages\jesaispas.html">Je m'ennuie au taf</a>
-      </li>
-      <li hidden class="authTab" style="float: right">
-        <a href="signin.html">Inscription</a>
-      </li>
-      <li hidden class="authTab" style="float: right">
-        <a href="login.html">Connexion</a>
-      </li>
-      <li hidden id="logOut" style="float: right" class="needAuth">
-        <span>Déconnexion</span>
-      </li>
-    </ul>
-  </body>
+    <link rel="icon" type="image/x-icon" href="ressources/kempynck2.png">
+    <link href="css/navbar.css" rel="stylesheet" type="text/css">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
+    <script type="module" src="js/navbar.js" defer></script>
+</head>
+<body class="bgAlien">
+    <header>
+        <nav>
+            <ul id="navbar" class="navbar"></ul>
+        </nav>
+    </header>
+</body>
 </html>

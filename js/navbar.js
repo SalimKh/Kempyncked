@@ -1,0 +1,64 @@
+import { auth, onAuthStateChanged, signOut } from './firebase-init.js';
+
+// Pages configuration
+const pages = [
+  { name: "K", href: "index.html" },
+  { name: "Accueil", href: "home.html" },
+  { name: "Space Ronan", href: "pages/spaceRonan.html", authRequired: true },
+  { name: "Inscription", href: "signin.html", authTab: true, floatRight: true },
+  { name: "Connexion", href: "login.html", authTab: true, floatRight: true },
+];
+
+// Function to generate navbar
+const generateNavbar = (isAuthenticated) => {
+  const navbar = document.getElementById('navbar');
+  navbar.innerHTML = ''; // Clear existing navbar
+
+  const currentPath = window.location.pathname.split('/').pop(); // Get the current page
+
+  pages.forEach(page => {
+    const li = document.createElement('li');
+    li.className = (page.authRequired ? 'needAuth' : '') + (page.authTab ? ' authTab' : '');
+    li.hidden = (page.authRequired && !isAuthenticated) || (page.authTab && isAuthenticated);
+    if (page.floatRight) li.style.float = 'right';
+
+    const a = document.createElement('a');
+    a.href = page.href;
+    a.textContent = page.name;
+
+    if (currentPath === page.href.split('/').pop()) {
+      a.className = 'active'; // Set active class if the current page matches
+    }
+
+    li.appendChild(a);
+    navbar.appendChild(li);
+  });
+
+  const logOutElement = document.createElement('li');
+  logOutElement.id = 'logOut';
+  logOutElement.className = 'needAuth';
+  logOutElement.hidden = !isAuthenticated;
+  logOutElement.style.float = 'right';
+  
+  const span = document.createElement('span');
+  span.textContent = 'Déconnexion';
+  logOutElement.appendChild(span);
+  navbar.appendChild(logOutElement);
+
+  logOutElement.addEventListener('click', () => {
+    signOut(auth)
+      .then(() => {
+        location.reload();
+      })
+      .catch((error) => {
+        console.error("Sign out error", error);
+      });
+  });
+};
+
+// Check if user is already logged in
+onAuthStateChanged(auth, (user) => {
+  const isAuthenticated = !!user;
+  document.body.className = isAuthenticated ? "bgAlien2" : "bgAlien";
+  generateNavbar(isAuthenticated);
+});
