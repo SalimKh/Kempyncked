@@ -7,6 +7,11 @@
   font-family: "Josefin Sans", sans-serif;
 }
 
+body{
+  padding: 0;
+  overflow: hidden;
+}
+
 :root {
   --color-left: #ef4565;
   --color-right: #094067;
