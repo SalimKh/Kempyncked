@@ -1,11 +1,11 @@
 import { auth, onAuthStateChanged, signOut } from './firebase-init.js';
 
 function getRelativePath(href) {
-  const currentPagePath = window.location.pathname;
-  const currentPageFolder = currentPagePath.substring(0, currentPagePath.lastIndexOf('/'));
-  const relativePath = `${currentPageFolder}/${href}`;
-  return relativePath;
-}
+    const currentPagePath = window.location.pathname;
+    const currentPageDepth = (currentPagePath.match(/\//g) || []).length - 1; // Count how many slash in path
+    const relativePrefix = '../'.repeat(currentPageDepth);
+    return relativePrefix + href;
+  }
 
 // Pages config
 const pages = [
@@ -17,12 +17,12 @@ const pages = [
   { name: "Je m'ennuie au taf", href: "pages/jesaispas.html", authRequired: true },
 ];
 
+const currentPath = window.location.pathname.split('/').pop(); // Get the current page
+
 // Function to generate navbar
 const generateNavbar = (isAuthenticated) => {
   const navbar = document.getElementById('navbar');
   navbar.innerHTML = ''; // Clear existing navbar
-
-  const currentPath = window.location.pathname.split('/').pop(); // Get the current page
 
   pages.forEach(page => {
     const li = document.createElement('li');
@@ -31,7 +31,7 @@ const generateNavbar = (isAuthenticated) => {
     if (page.floatRight) li.style.float = 'right';
 
     const a = document.createElement('a');
-    a.href = page.href.startsWith('pages/') ? getRelativePath(page.href) : page.href;
+    a.href = getRelativePath(page.href);
     a.textContent = page.name;
 
     if (currentPath === page.href.split('/').pop()) {
@@ -66,7 +66,17 @@ const generateNavbar = (isAuthenticated) => {
 
 // Check if user is already logged in
 onAuthStateChanged(auth, (user) => {
-  const isAuthenticated = !!user;
-  document.body.className = isAuthenticated ? "bgAlien2" : "bgAlien";
-  generateNavbar(isAuthenticated);
+    const isAuthenticated = !!user;
+    console.log(currentPath);
+    
+    const currentPage = pages.find(page => page.href.includes(currentPath));
+    const isAuthRequiredPage = currentPage && currentPage.authRequired;
+  
+    if (isAuthRequiredPage && !isAuthenticated) {
+      window.location.href = "../home.html";
+      return; // Redirected, no need to continue
+    }
+  
+    document.body.className = isAuthenticated ? "bgAlien2" : "bgAlien";
+    generateNavbar(isAuthenticated);
 });
