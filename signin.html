@@ -3,19 +3,17 @@
   <head>
     <title>Création de compte</title>
     <link rel="icon" type="image/x-icon" href="ressources/kempynck2.png" />
-    <script type="module" src="js/signin.js"></script>
     <link href="css/navbar.css" rel="stylesheet" type="text/css" />
     <link href="css/connect.css" rel="stylesheet" type="text/css" />
+    <script type="module" src="js/navbar.js" defer></script>
+    <script type="module" src="js/signin.js" defer></script>
   </head>
-
   <body>
-    <ul>
-      <li><a href="index.html">K</a></li>
-      <li><a href="home.html">Accueil</a></li>
-      <li style="float: right" class="active"><a>Inscription</a></li>
-      <li style="float: right"><a href="login.html">Connexion</a></li>
-    </ul>
-
+    <header>
+      <nav>
+        <ul id="navbar" class="navbar"></ul>
+      </nav>
+    </header>
     <div class="main">
       <div class="container">
         <div class="title">Création de compte</div>
@@ -64,7 +62,7 @@
               <input
                 id="signinButton"
                 type="submit"
-                value="C'est partie mon kiki"
+                value="C'est parti mon kiki"
               />
             </div>
           </form>

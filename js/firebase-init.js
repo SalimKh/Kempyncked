@@ -1,10 +1,11 @@
-// Import firebase SDKs
+// firebase-init.js
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
 import {
   getAuth,
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-auth.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -20,5 +21,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
+const db = getFirestore(app);
 
-export { auth, onAuthStateChanged, signOut };
+export { auth, db, onAuthStateChanged, signOut };
