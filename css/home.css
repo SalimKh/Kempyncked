@@ -3,60 +3,78 @@ body {
   overflow: hidden;
   background-color: #474747;
   background-image: url("../ressources/kempynck2.png");
-  background-size: 200px; /* Adjust size of the image */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Ensure single instance of the image */
-  height: 100vh; /* Set the height of the background */
+  background-size: 200px;
+  /* Adjust size of the image */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Ensure single instance of the image */
+  height: 100vh;
+  /* Set the height of the background */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
 }
 
-/* Add whirlwind effect */
+/* Add halo effect */
 body::before {
   content: "";
   position: absolute;
-  top: calc(50% - 100px); /* Adjust top position to center vertically */
-  left: calc(50% - 100px); /* Adjust left position to center horizontally */
-  width: 200px; /* Adjust size of the whirlwind */
-  height: 200px; /* Adjust size of the whirlwind */
+  top: calc(50% - 100px);
+  /* Adjust top position to center vertically */
+  left: calc(50% - 100px);
+  /* Adjust left position to center horizontally */
+  width: 200px;
+  /* Adjust size of the halo */
+  height: 200px;
+  /* Adjust size of the halo */
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); /* Adjust shadow color and intensity */
-  animation: whirlwind 2s linear infinite; /* Adjust animation duration and timing */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  /* Adjust shadow color and intensity */
+  animation: halo 2500ms linear infinite 200ms;
+  /* Adjust animation duration and timing */
 }
 
-/* Define keyframes for whirlwind animation */
-@keyframes whirlwind {
+/* Define keyframes for halo animation */
+@keyframes halo {
   0% {
     transform: rotate(0deg) scale(1);
     opacity: 1;
     filter: blur(0px);
   }
+
   50% {
     transform: rotate(1800deg) scale(3);
     opacity: 0.5;
     filter: blur(2px);
   }
+
   100% {
     transform: rotate(3600deg) scale(5);
     opacity: 0;
     filter: blur(5px);
   }
 }
- 
+
 
 /* Apply glow effect to the image */
 body::after {
   content: "";
   position: absolute;
-  top: calc(50% - 100px); /* Match top position with whirlwind */
-  left: calc(50% - 100px); /* Match left position with whirlwind */
-  width: 200px; /* Adjust size of the glow */
-  height: 200px; /* Adjust size of the glow */
+  top: calc(50% - 100px);
+  /* Match top position with halo */
+  left: calc(50% - 100px);
+  /* Match left position with halo */
+  width: 200px;
+  /* Adjust size of the glow */
+  height: 200px;
+  /* Adjust size of the glow */
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 80%); /* Adjust glow color and intensity */
-  animation: whirlwind 2s linear infinite; /* Match animation with whirlwind */
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 80%);
+  /* Adjust glow color and intensity */
+  animation: halo 2500ms linear infinite 200ms;
+  /* Match animation with halo */
 }
 
 /* Navbar styling */
@@ -69,3 +87,65 @@ body::after {
   z-index: 1000;
 }
 
+.flying-instances {
+  position: fixed;
+  bottom: 30%;
+  left: -15%;
+}
+
+/* Styles for flying instances */
+.flying-instance {
+  position: absolute;
+  width: 50px;
+  /* Adjust width of the flying instance */
+  height: 50px;
+  /* Adjust height of the flying instance */
+  background-image: url('../ressources/camtarK.png');
+  /* Specify the image URL */
+  background-size: cover;
+  animation: fly 5s linear infinite;
+  /* Adjust animation duration and timing */
+}
+
+/* Keyframes for flying animation */
+@keyframes fly {
+  0% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(100vw) translateY(100vh);
+    /* Adjust endpoint of animation */
+    opacity: 0;
+  }
+}
+
+.join-us-text {
+  position: relative;
+  bottom: 30%;
+  background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 8vw;
+  font-family: "Source Sans Pro", sans-serif;
+  animation: reveal 3000ms ease-in-out forwards 200ms,
+    glow 2500ms linear infinite 3000ms;
+}
+
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+
+  100% {
+    background-size: 300% 300%;
+  }
+}
+
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
+}
