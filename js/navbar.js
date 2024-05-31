@@ -1,12 +1,20 @@
 import { auth, onAuthStateChanged, signOut } from './firebase-init.js';
 
-// Pages configuration
+function getRelativePath(href) {
+  const currentPagePath = window.location.pathname;
+  const currentPageFolder = currentPagePath.substring(0, currentPagePath.lastIndexOf('/'));
+  const relativePath = `${currentPageFolder}/${href}`;
+  return relativePath;
+}
+
+// Pages config
 const pages = [
   { name: "K", href: "index.html" },
   { name: "Accueil", href: "home.html" },
   { name: "Space Ronan", href: "pages/spaceRonan.html", authRequired: true },
   { name: "Inscription", href: "signin.html", authTab: true, floatRight: true },
   { name: "Connexion", href: "login.html", authTab: true, floatRight: true },
+  { name: "Je m'ennuie au taf", href: "pages/jesaispas.html", authRequired: true },
 ];
 
 // Function to generate navbar
@@ -23,7 +31,7 @@ const generateNavbar = (isAuthenticated) => {
     if (page.floatRight) li.style.float = 'right';
 
     const a = document.createElement('a');
-    a.href = page.href;
+    a.href = page.href.startsWith('pages/') ? getRelativePath(page.href) : page.href;
     a.textContent = page.name;
 
     if (currentPath === page.href.split('/').pop()) {
@@ -51,7 +59,7 @@ const generateNavbar = (isAuthenticated) => {
         location.reload();
       })
       .catch((error) => {
-        console.error("Sign out error", error);
+        console.error("Erreur de déconnexion", error);
       });
   });
 };
