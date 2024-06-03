@@ -15,7 +15,7 @@ const pages = [
     { name: "Inscription", href: "signin.html", authTab: true, floatRight: true },
     { name: "Connexion", href: "login.html", authTab: true, floatRight: true },
     { name: "Gauche ou Droite ?", href: "pages/ronan.html", authRequired: true },
-    { name: "Je m'ennuie au taf", href: "pages/jesaispas.html", authRequired: true },
+    { name: "Je m'ennuie au taf", href: "pages/revolution.html", authRequired: true },
 ];
 
 const currentPath = window.location.pathname.split('/').pop(); // Get the current page

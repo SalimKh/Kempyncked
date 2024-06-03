@@ -1,0 +1,44 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    background-color: #1e2226;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    max-height: 60px;
+    z-index: 1000; /* Ensures navbar is on top */
+}
+
+
+.content {
+    padding-top: 60px; /* Adjust this value based on navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Full height minus navbar */
+    background-color: black;
+}
+
+#game-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
