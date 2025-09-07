@@ -8,11 +8,11 @@ function getRelativePath(href) {
 const pages = [
     { name: "K", href: "index.html" },
     { name: "Accueil", href: "home.html" },
-    { name: "Space Ronan", href: "pages/spaceRonan.html", authRequired: true },
+    { name: "Space Ronan", href: "pages/spaceRonan.html" },
     { name: "Inscription", href: "signin.html", authTab: true, floatRight: true },
     { name: "Connexion", href: "login.html", authTab: true, floatRight: true },
-    { name: "Gauche ou Droite ?", href: "pages/ronan.html", authRequired: true },
-    { name: "Quel est ce Pokémon ?", href: "pages/revolution.html", authRequired: true },
+    { name: "Gauche ou Droite ?", href: "pages/ronan.html"},
+    { name: "Quel est ce Pokémon ?", href: "pages/revolution.html" },
 ];
 
 const currentPath = (() => {
@@ -30,8 +30,8 @@ function generateNavbar(isAuthenticated) {
 
     pages.forEach(page => {
         const li = document.createElement('li');
-        li.className = (page.authRequired ? 'needAuth' : '') + (page.authTab ? ' authTab' : '');
-        li.hidden = (page.authRequired && !isAuthenticated) || (page.authTab && isAuthenticated);
+        li.className = (page.authTab ? ' authTab' : '');
+        li.hidden = (page.authTab && isAuthenticated);
         if (page.floatRight) li.style.float = 'right';
 
         const a = document.createElement('a');
@@ -71,15 +71,6 @@ function generateNavbar(isAuthenticated) {
 // Check if user is already logged in
 onAuthStateChanged(auth, (user) => {
     const isAuthenticated = !!user;
-    console.log(currentPath);
-
-    const currentPage = pages.find(page => page.href.includes(currentPath));
-    const isAuthRequiredPage = currentPage && currentPage.authRequired;
-
-    if (isAuthRequiredPage && !isAuthenticated) {
-        window.location.href = "../home.html";
-        return; // Redirected, no need to continue
-    }
 
     if (isAuthenticated && currentPath === "home.html") {
         document.getElementsByClassName('join-us-text')[0].innerHTML = "Bienvenue";
