@@ -4,12 +4,24 @@
     <meta charset="UTF-8">
     <title>Quel est ce Pokémon ?</title>
     <link rel="icon" type="image/x-icon" href="../ressources/kempynck2.png" />
+    <script type="module" src="../js/navbar.js"></script>
     <link href="../css/navbar.css" rel="stylesheet" type="text/css" />
+    <link href="../css/revolution.css" rel="stylesheet" type="text/css" />
+    <script src="../js/revolution-bg.js" defer></script>
 </head>
 <body>
     <ul id="navbar"></ul>
+    <div class="animated-bg"></div>
+    <div class="center-container">
+        <button class="nouvelle-partie-btn">Nouvelle partie</button>
+    </div>
     <div class="content">
-        
+        <div class="game-container" style="display:none;">
+            <h1 class="game-title" style="text-align:center; margin-top: 1rem;">Quel est-ce Pokémon&nbsp;?</h2>
+            <img id="game-image" src="" alt="Qui est-ce ?" style="max-width:600px;max-height:600px;display:block;margin:0 auto 1rem;" />
+            <input id="guess-input" type="text" placeholder="Nom du personnage" autocomplete="off" style="display:block;margin:0 auto 1rem;" />
+            <button id="submit-guess" style="display:block;margin:0 auto 1rem;">Valider</button>
+        </div>
     </div>
 </body>
 </html>

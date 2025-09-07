@@ -77,3 +77,22 @@ onAuthStateChanged(auth, (user) => {
     }
     generateNavbar(isAuthenticated);
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const navbar = document.getElementById("navbar");
+    const links = [
+        { name: "Accueil", href: "home.html" },
+        { name: "À propos", href: "about.html" },
+        { name: "Projets", href: "projects.html" },
+        { name: "Contact", href: "contact.html" }
+    ];
+
+    links.forEach(link => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.textContent = link.name;
+        a.href = link.href;
+        li.appendChild(a);
+        navbar.appendChild(li);
+    });
+});
