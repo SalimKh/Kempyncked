@@ -1,6 +1,6 @@
 import { auth, onAuthStateChanged, signOut } from './firebase-init.js';
 
-function getRelativePath(href) {);
+function getRelativePath(href) {
     return window.location.pathname.replace(currentPath, href);
 }
 
