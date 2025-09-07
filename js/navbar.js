@@ -1,10 +1,8 @@
 import { auth, onAuthStateChanged, signOut } from './firebase-init.js';
 
 function getRelativePath(href) {
-    const currentPagePath = window.location.pathname;
-    const currentPageDepth = (currentPagePath.match(/\//g) || []).length - 1; // Count how many slash in path
-    const relativePrefix = '../'.repeat(currentPageDepth);
-    return relativePrefix + href;
+    const relativePath = window.location.pathname - currentPath;
+    return relativePath + href;
 }
 
 // Pages config
