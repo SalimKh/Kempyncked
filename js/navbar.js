@@ -18,7 +18,13 @@ const pages = [
     { name: "Je m'ennuie au taf", href: "pages/revolution.html", authRequired: true },
 ];
 
-const currentPath = window.location.pathname.split('/').pop(); // Get the current page
+const currentPath = (() => {
+    let path  = window.location.pathname.split('/').pop();
+    if (window.location.pathname.includes('pages/')) {
+        path = 'pages/' + path;
+    }
+    return path;
+})();
 
 // Function to generate navbar
 function generateNavbar(isAuthenticated) {
